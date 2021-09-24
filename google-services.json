@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "321695041719",
+    "project_id": "engeniumiot",
+    "storage_bucket": "engeniumiot.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:321695041719:android:e0c432600b58e96cd7e532",
+        "android_client_info": {
+          "package_name": "za.co.engeinum.engeinumiot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "321695041719-h8gb7cpl875t9v0a4guh7bfuop134ru0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCC3nwSvIWvTw4YzkEa_VZOXsewKA1iwXM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "321695041719-h8gb7cpl875t9v0a4guh7bfuop134ru0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

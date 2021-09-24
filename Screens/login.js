@@ -7,6 +7,8 @@ import Spinner from 'react-native-loading-spinner-overlay';
 import { RootSiblingParent } from 'react-native-root-siblings';
 import Toast from 'react-native-root-toast';
 
+
+
 export default class LoginScreen extends Component {
 
   constructor(props) {
@@ -19,8 +21,8 @@ export default class LoginScreen extends Component {
     };
   }
 
-  setUsername(username) {
-    this.setState({ username : username })
+setUsername(username) {
+   this.setState({ username : username })
   }
 
 setPassword(password) {
@@ -86,9 +88,9 @@ setPassword(password) {
 
     try {
 
-      console.debug(this.state.username);
-      console.debug( this.state.password);
-
+    let value = await this.registerForPushNotificationsAsync();
+     
+    console.debug(value); 
     let res = await fetch( Constants.LOGIN_URL, {
       method: 'POST',
         headers: {
@@ -96,7 +98,8 @@ setPassword(password) {
         },
       body: JSON.stringify( {
         'username': this.state.username,
-        'password': this.state.password      
+        'password': this.state.password,
+        'fcm'      : value
       })
       
     });
@@ -107,7 +110,7 @@ setPassword(password) {
         if(res.pass==true)
         {
 
-          console.debug(res.user.ClientID); 
+        
           Constants.save(Constants.CLIENTID,res.user.ClientID+"");
           Constants.save(Constants.CLIENT_AREA,res.user.Client_Area+"");
           Constants.save(Constants.CLIENT_NAME,res.user.Client_Name+"");
@@ -138,5 +141,37 @@ setPassword(password) {
 
   }
 
+  async registerForPushNotificationsAsync() {
+    let token;
+    if (true) {
+      const { status: existingStatus } = await Notifications.getPermissionsAsync();
+      let finalStatus = existingStatus;
+      if (existingStatus !== 'granted') {
+        const { status } = await Notifications.requestPermissionsAsync();
+        finalStatus = status;
+      }
+      if (finalStatus !== 'granted') {
+        alert('Failed to get push token for push notification!');
+        return;
+      }
+      token = (await Notifications.getExpoPushTokenAsync()).data;
+      console.log(token);
+    } 
+    
+    else {
+      alert('Must use physical device for Push Notifications');
+    }
+  
+    if (Platform.OS === 'android') {
+      Notifications.setNotificationChannelAsync('default', {
+        name: 'default',
+        importance: Notifications.AndroidImportance.MAX,
+        vibrationPattern: [0, 250, 250, 250],
+        lightColor: '#FF231F7C',
+      });
+    }
+  
+    return token;
+  }
   
 }

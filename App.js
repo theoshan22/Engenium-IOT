@@ -11,13 +11,26 @@ import LoginScreen from './Screens/login'
 import HomeScreen from './Screens/home'
 
 import AddDeviceScreen from './Screens/deviceAdd'
+import * as Notifications from 'expo-notifications';
 
 const Stack = createStackNavigator();
  
-
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: false,
+    shouldSetBadge: false,
+  }),
+});
 export default class App extends React.Component {
 
 
+
+  constructor(props) {
+  
+    super(props);
+     
+  }
   
   render() {
     return (
@@ -32,7 +45,7 @@ export default class App extends React.Component {
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="AddDevice" component={AddDeviceScreen} />
       </Stack.Navigator>
-    </NavigationContainer>
+      </NavigationContainer>
      
     );
   }

@@ -3,7 +3,7 @@
     "name": "Engenium-IOT",
     "slug": "Engenium-IOT",
     "version": "1.0.0",
-    "orientation": "portrait",
+    "orientation": "portrait",    
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
@@ -30,3 +30,4 @@
     }
   }
 }
+ 
